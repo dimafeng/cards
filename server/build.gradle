@@ -1,0 +1,42 @@
+apply plugin: 'java'
+apply plugin: 'war'
+
+buildscript {
+    repositories { jcenter() }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE"
+        classpath 'org.springframework:springloaded:1.2.0.RELEASE'
+    }
+}
+
+apply plugin: 'idea'
+
+idea {
+    module {
+        inheritOutputDirs = false
+        outputDir = file("$buildDir/classes/main/")
+    }
+}
+
+sourceCompatibility = 1.8
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile(
+            'org.mongodb:mongo-java-driver:2.12.5',
+            'com.google.guava:guava:18.0',
+    )
+    compile('org.springframework.data:spring-data-mongodb:1.6.1.RELEASE') {
+        exclude group: 'org.mongodb', module: 'mongo-java-driver'
+    }
+    compile('org.springframework.boot:spring-boot-starter-web:1.2.1.RELEASE') {
+
+    }
+    //compile('org.springframework.boot:spring-boot-starter-security:1.2.1.RELEASE') {
+    //}
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
