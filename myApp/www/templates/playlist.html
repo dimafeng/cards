@@ -1,0 +1,24 @@
+<ion-view view-title="Playlist">
+  <ion-content>
+    <div class="card" ng-hide="finished()">
+      <div class="item item-text-wrap">
+        <h1>{{getCurrentCard().word}}</h1>
+        <div ng-show="showTranslation">
+          {{getCurrentCard().translation}}
+        </div>
+      </div>
+    </div>
+
+    <div class="card" ng-show="finished()">
+      <div class="item item-text-wrap">
+        <button class="button button-positive ion-android-sync" ng-click="restart()"> Начать сначала</button>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>
+
+<div class="bar bar-footer" ng-hide="finished()">
+  <button class="button button-positive" ng-click="remember()"> Помню</button>
+  <button ng-hide="showTranslation" class="button button-assertive" ng-click="dontRemember()"> Не помню</button>
+</div>
