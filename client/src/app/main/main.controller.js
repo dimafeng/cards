@@ -1,7 +1,7 @@
 'use strict';
 
-class MainCtrl {
-  constructor ($scope) {
+angular.module('client')
+  .controller('MainCtrl', function ($scope) {
     $scope.awesomeThings = [
       {
         'title': 'AngularJS',
@@ -56,20 +56,9 @@ class MainCtrl {
         'url': 'https://github.com/sass/node-sass',
         'description': 'Node.js binding to libsass, the C version of the popular stylesheet preprocessor, Sass.',
         'logo': 'node-sass.png'
-      },
-      {
-        'title': 'ES6 (Babel formerly 6to5)',
-        'url': 'https://babeljs.io/',
-        'description': 'Turns ES6+ code into vanilla ES5, so you can use next generation features today.',
-        'logo': 'babel.png'
       }
     ];
-    $scope.awesomeThings.forEach(function(awesomeThing) {
+    angular.forEach($scope.awesomeThings, function(awesomeThing) {
       awesomeThing.rank = Math.random();
     });
-  }
-}
-
-MainCtrl.$inject = ['$scope'];
-
-export default MainCtrl;
+  });

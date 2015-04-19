@@ -33,9 +33,9 @@
         "extension": "scss"
       },
       "jsPreprocessor": {
-        "key": "babel",
+        "key": "none",
         "extension": "js",
-        "srcExtension": "es6"
+        "srcExtension": "js"
       },
       "htmlPreprocessor": {
         "key": "none",

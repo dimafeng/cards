@@ -1,5 +1,4 @@
 {
-  "esnext": true,
   "globalstrict": true,
   "bitwise": true,
   "camelcase": true,

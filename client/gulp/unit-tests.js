@@ -27,7 +27,7 @@ module.exports = function(options) {
     ];
 
     var srcFiles = [
-      options.tmp + '/serve/app/index.js'
+      options.src + '/app/**/*.js'
     ].concat(specFiles.map(function(file) {
       return '!' + file;
     }));
