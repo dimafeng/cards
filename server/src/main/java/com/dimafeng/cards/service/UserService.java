@@ -49,4 +49,8 @@ public class UserService implements UserDetailsService, PasswordEncoder {
         final User user = userRepository.findByEmail(username);
         return new UserPrincipal(user);
     }
+
+    public User createUser(String email, String password) {
+        return userRepository.save(new User(email, password));
+    }
 }

@@ -9,8 +9,8 @@ angular.module('client', ['ngSanitize', 'ngResource', 'ui.router', 'ui.bootstrap
         controller: 'MainCtrl'
       })
       .state('signup', {
-        url: '/',
-        templateUrl: 'app/signup.html',
+        url: '/signup',
+        templateUrl: 'app/signup/signup.html',
         controller: 'SignupCtrl'
       });
 
