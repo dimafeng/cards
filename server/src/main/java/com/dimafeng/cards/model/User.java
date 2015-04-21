@@ -15,10 +15,16 @@ public class User {
     private String email;
     private String password;
 
-    public User(String email, String password) {
+    @JsonIgnore
+    private String activationCode;
+
+    private boolean activated;
+
+    public User(String email, String password, String activationCode) {
 
         this.email = email;
         this.password = password;
+        this.activationCode = activationCode;
     }
 
     public String getId() {
@@ -50,5 +56,21 @@ public class User {
     @Override
     public String toString() {
         return email;
+    }
+
+    public String getActivationCode() {
+        return activationCode;
+    }
+
+    public void setActivationCode(String activationCode) {
+        this.activationCode = activationCode;
+    }
+
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
     }
 }
