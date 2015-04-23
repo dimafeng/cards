@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -62,5 +63,9 @@ public class UserService implements UserDetailsService, PasswordEncoder {
         User user = userRepository.findByActivationCode(code);
         user.setActivated(true);
         userRepository.save(user);
+    }
+
+    public User getUser(Authentication authentication) {
+        return userRepository.findByEmail(authentication.getName());
     }
 }
