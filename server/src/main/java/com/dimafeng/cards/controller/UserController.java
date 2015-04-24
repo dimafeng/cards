@@ -3,6 +3,7 @@ package com.dimafeng.cards.controller;
 import com.dimafeng.cards.model.User;
 import com.dimafeng.cards.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,5 +36,11 @@ public class UserController {
     public void activate(@RequestParam String code, HttpServletResponse res) throws IOException {
         userService.activate(code);
         res.sendRedirect("/");
+    }
+
+    @RequestMapping("/")
+    @ResponseBody
+    public User getCurrent(Authentication authentication) {
+        return userService.getUser(authentication);
     }
 }

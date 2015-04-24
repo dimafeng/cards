@@ -56,7 +56,7 @@ public class UserService implements UserDetailsService, PasswordEncoder {
     public User createUser(String email, String password) {
         String guid = UUID.randomUUID().toString();
         log.info(guid);
-        return userRepository.save(new User(email, password, guid));
+        return userRepository.save(new User(email, encode(password), guid));
     }
 
     public void activate(String code) {
