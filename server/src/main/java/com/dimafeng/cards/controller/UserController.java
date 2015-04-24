@@ -38,7 +38,7 @@ public class UserController {
         res.sendRedirect("/");
     }
 
-    @RequestMapping("/")
+    @RequestMapping("")
     @ResponseBody
     public User getCurrent(Authentication authentication) {
         return userService.getUser(authentication);

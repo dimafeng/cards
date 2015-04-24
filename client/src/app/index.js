@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('client', ['ngSanitize', 'ngResource', 'ui.router', 'ui.bootstrap'])
-    .config(function ($stateProvider, $urlRouterProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         $stateProvider
             .state('home', {
                 url: '/',
@@ -20,5 +20,9 @@ angular.module('client', ['ngSanitize', 'ngResource', 'ui.router', 'ui.bootstrap
             });
 
         $urlRouterProvider.otherwise('/');
+        $httpProvider.defaults.withCredentials = true;
+
     })
-;
+    .run(function (UserService) {
+        UserService.checkAuth();
+    });

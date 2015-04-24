@@ -1,13 +1,7 @@
 'use strict';
 
-angular.module('client').service("UserService", function ($http, BASE_URL) {
+angular.module('client').service("UserService", function ($http, BASE_URL, $state) {
     var currentUser = null;
-
-    (function () {
-        $http.get(BASE_URL + 'users/').success(function (res) {
-            currentUser = res;
-        });
-    })();
 
     return {
         signUp: function (credentials) {
@@ -21,11 +15,18 @@ angular.module('client').service("UserService", function ($http, BASE_URL) {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             }).success(function (res) {
-                currentUser = JSON.parse(res);
+                currentUser = res;
+                $state.go('home');
             });
         },
         isLoggedIn: function () {
             return currentUser != null;
+        },
+        checkAuth: function() {
+          $http.get(BASE_URL + 'users').success(function (res) {
+            currentUser = res;
+            $state.go('home');
+          });
         }
     };
 });

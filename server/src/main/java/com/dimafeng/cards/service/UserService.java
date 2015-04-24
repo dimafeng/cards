@@ -66,6 +66,6 @@ public class UserService implements UserDetailsService, PasswordEncoder {
     }
 
     public User getUser(Authentication authentication) {
-        return userRepository.findByEmail(authentication.getName());
+        return ((UserPrincipal)authentication.getPrincipal()).getUser();
     }
 }

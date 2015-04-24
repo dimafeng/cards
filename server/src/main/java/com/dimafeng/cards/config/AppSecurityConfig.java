@@ -23,9 +23,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
 @Configuration
-@EnableGlobalMethodSecurity(securedEnabled = true)
 @EnableWebSecurity
-@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
+@EnableGlobalMethodSecurity(securedEnabled = true)
+//@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class AppSecurityConfig extends WebSecurityConfigurerAdapter
 {
     @Autowired
