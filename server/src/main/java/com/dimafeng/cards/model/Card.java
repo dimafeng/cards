@@ -5,6 +5,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
+
 @Document
 public class Card implements Model {
 
@@ -14,6 +16,7 @@ public class Card implements Model {
     private String description;
     private int know;
     private int dontKnow;
+    private Date date;
 
     @Indexed
     private String userId;
@@ -64,5 +67,13 @@ public class Card implements Model {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

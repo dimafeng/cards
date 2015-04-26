@@ -2,10 +2,8 @@
 
 angular.module('client')
     .controller('MainCtrl', function ($scope, $resource, BASE_URL) {
-        var Playlist = $resource(BASE_URL + 'playlists/:id', {id: '@id'}, {
-            //'draft': { url: '/admin/articles/:id/draft', method: 'POST' }
-        });
 
+        var Playlist = $resource(BASE_URL + 'playlists/:id', {id: '@id'});
         var Card = $resource(BASE_URL + 'cards/:id', {id: '@id'}, {
             'byPlaylist': {
                 url: BASE_URL + 'playlists/:playlistId/cards',
@@ -29,6 +27,7 @@ angular.module('client')
         var updateEditedCards = function () {
             Card.byPlaylist({playlistId: $scope.currentPlaylist.id}, function (cards) {
                 $scope.currentCards = cards;
+                $scope.newCard = null;
             });
         };
 
@@ -51,7 +50,7 @@ angular.module('client')
             card.origin = $scope.newCard.origin;
             card.description = $scope.newCard.description;
             card.$save().then(function (res) {
-                if ($scope.currentPlaylist.cardIds == null) {
+                if ($scope.currentPlaylist.cardIds === null) {
                     $scope.currentPlaylist.cardIds = [];
                 }
                 $scope.currentPlaylist.cardIds.push(res.id);

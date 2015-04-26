@@ -18,7 +18,7 @@
             </table>
         </div>
 
-        <div class="col-md-8">
+        <div class="col-md-8" ng-show="currentPlaylist!==null">
             <h2>
                 {{currentPlaylist.name}}
             </h2>
@@ -57,7 +57,12 @@
                 </div>
             </div>
 
-            {{currentCards}}
+            <div class="panel panel-default" ng-repeat="card in currentCards">
+                <div class="panel-body">
+                    <h1>{{card.origin}}</h1>
+                    {{card.description}}
+                </div>
+            </div>
 
         </div>
     </div>

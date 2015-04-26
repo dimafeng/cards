@@ -12,7 +12,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/cards")
@@ -30,6 +32,9 @@ public class CardController implements CRUDMapping<Card, Card> {
     @Override
     public void processBeforeSave(Card item, Authentication authentication) throws Exception {
         item.setUserId(userService.getUser(authentication).getId());
+        if (item.getDate() == null) {
+            item.setDate(new Date());
+        }
     }
 
     @Override

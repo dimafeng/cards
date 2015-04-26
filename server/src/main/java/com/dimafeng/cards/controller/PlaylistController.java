@@ -9,6 +9,7 @@ import com.dimafeng.cards.repository.PlaylistRepository;
 import com.dimafeng.cards.repository.UserRepository;
 import com.dimafeng.cards.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.data.domain.Sort.*;
 
 @Controller
 @RequestMapping("/playlists")
@@ -63,7 +66,7 @@ public class PlaylistController implements CRUDMapping<Playlist, Playlist> {
     public Iterable<Card> getCards(@PathVariable("id") String id, Authentication authentication) {
         Playlist one = get(id, authentication);
         return Optional.ofNullable(one.getCardIds())
-                .map(e -> cardRepository.findAll(e))
+                .map(e -> cardRepository.findByIds(e, new Sort(new Order(Direction.DESC, "date"))))
                 .orElse(Collections.emptyList());
     }
 }
