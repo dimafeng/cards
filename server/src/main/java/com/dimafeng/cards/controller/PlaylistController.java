@@ -26,7 +26,7 @@ public class PlaylistController implements CRUDMapping<Playlist, Playlist> {
 
     @Override
     public void processBeforeSave(Playlist item, Authentication authentication) throws Exception {
-
+        item.setUserId(userService.getUser(authentication).getId());
     }
 
     @Override
@@ -47,4 +47,6 @@ public class PlaylistController implements CRUDMapping<Playlist, Playlist> {
         User user = userService.getUser(authentication);
         return repository.findByUserId(user.getId());
     }
+
+
 }
