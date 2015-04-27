@@ -1,7 +1,7 @@
 "use strict";
 angular.module('starter.controllers', [])
 
-    .controller('AppCtrl', function ($scope, $ionicModal, $timeout, UserService) {
+    .controller('AppCtrl', function ($scope, $ionicModal, $timeout, UserService, $rootScope) {
         // Form data for the login modal
         $scope.loginData = {};
 
@@ -24,34 +24,49 @@ angular.module('starter.controllers', [])
 
         // Perform the login action when the user submits the login form
         $scope.doLogin = function () {
-            UserService.login($scope.loginData).then(function() {
+            UserService.login($scope.loginData).then(function () {
                 $scope.modal.hide();
+                $rootScope.$broadcast('loggedIn');
             });
         };
 
-        $scope.isLoggedIn = function() {
+        $scope.isLoggedIn = function () {
             return UserService.isLoggedIn();
         }
     })
 
-    .controller('PlaylistsCtrl', function ($scope) {
+    .controller('PlaylistsCtrl', function ($scope, UserService, $rootScope, $resource, BASE_URL) {
 
+        var Playlist = $resource(BASE_URL + 'playlists/:id', {id: '@id'});
 
-        /**
-         * TODO redo
-         */
-        $scope.playlists = [
-            {title: 'Names', id: 1},
-            {title: 'Test', id: 2},
-        ];
+        $rootScope.$on('loggedIn', function () {
+            updatePlaylists();
+        });
+
+        var updatePlaylists = function () {
+            Playlist.query(function (playlists) {
+                $scope.playlists = playlists;
+            });
+        };
+
+        (function () {
+            if (UserService.isLoggedIn()) {
+                updatePlaylists();
+            }
+        })();
     })
 
-    .controller('PlaylistCtrl', function ($scope, $stateParams) {
+    .controller('PlaylistCtrl', function ($scope, $stateParams, CardService) {
 
-        var data = [
-            {word: 'test', translation: 'тест'},
-            {word: 'cat', translation: 'кошка'}
-        ];
+        var Card = CardService.getResource();
+
+        var data = [];
+
+        (function () {
+            Card.byPlaylist({playlistId: $stateParams.id}, function (cards) {
+                data = cards;
+            });
+        })();
 
         var position = 0;
         $scope.showTranslation = false;
@@ -69,11 +84,11 @@ angular.module('starter.controllers', [])
             $scope.showTranslation = true;
         };
 
-        $scope.finished = function() {
+        $scope.finished = function () {
             return data.length <= position;
-        }
+        };
 
         $scope.restart = function () {
             position = 0;
-        }
+        };
     });

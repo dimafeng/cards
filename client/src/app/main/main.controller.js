@@ -1,16 +1,10 @@
 'use strict';
 
 angular.module('starter')
-    .controller('MainCtrl', function ($scope, $resource, BASE_URL) {
+    .controller('MainCtrl', function ($scope, $resource, BASE_URL, CardService) {
 
         var Playlist = $resource(BASE_URL + 'playlists/:id', {id: '@id'});
-        var Card = $resource(BASE_URL + 'cards/:id', {id: '@id'}, {
-            'byPlaylist': {
-                url: BASE_URL + 'playlists/:playlistId/cards',
-                method: 'GET',
-                isArray: true
-            }
-        });
+        var Card = CardService.getResource();
 
         $scope.playlists = [];
         $scope.currentPlaylist = null;
