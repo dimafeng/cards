@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('client')
+angular.module('starter')
     .controller('MainCtrl', function ($scope, $resource, BASE_URL) {
 
         var Playlist = $resource(BASE_URL + 'playlists/:id', {id: '@id'});

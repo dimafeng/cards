@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('client')
+angular.module('starter')
     .controller('LoginCtrl', function ($scope, UserService) {
         $scope.submit = function () {
             UserService.login($scope.credentials);

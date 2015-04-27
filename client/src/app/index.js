@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('client', ['ngSanitize', 'ngResource', 'ui.router', 'ui.bootstrap'])
+angular.module('starter', ['ngSanitize', 'ngResource', 'ui.router', 'ui.bootstrap'])
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         $stateProvider
             .state('home', {
