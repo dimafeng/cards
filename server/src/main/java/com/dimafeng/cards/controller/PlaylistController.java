@@ -53,6 +53,10 @@ public class PlaylistController implements CRUDMapping<Playlist, Playlist> {
     @Override
     public void checkRight(Playlist element, Authentication authentication) {
         User user = userService.getUser(authentication);
+        if (element.getId() == null) {
+            return;
+        }
+
         if (!user.getId().equals(element.getUserId())) {
             throw new OperationNotPermited();
         }

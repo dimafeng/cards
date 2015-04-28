@@ -43,9 +43,16 @@ angular.module('starter.controllers', [])
             updatePlaylists();
         });
 
+        $rootScope.doRefresh = function () {
+            updatePlaylists();
+        };
+
         var updatePlaylists = function () {
             Playlist.query(function (playlists) {
+                $scope.$broadcast('scroll.refreshComplete');
                 $scope.playlists = playlists;
+            }, function() {
+                $scope.$broadcast('scroll.refreshComplete');
             });
         };
 
@@ -75,7 +82,7 @@ angular.module('starter.controllers', [])
             return data[position];
         };
 
-        var updateCard = function(level) {
+        var updateCard = function (level) {
             var card = $scope.getCurrentCard();
             card.level = level;
             card.lastCheck = new Date();
