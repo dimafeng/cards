@@ -32,8 +32,8 @@ public class CardController implements CRUDMapping<Card, Card> {
     @Override
     public void processBeforeSave(Card item, Authentication authentication) throws Exception {
         item.setUserId(userService.getUser(authentication).getId());
-        if (item.getDate() == null) {
-            item.setDate(new Date());
+        if (item.getAdded() == null) {
+            item.setAdded(new Date());
         }
     }
 
@@ -45,7 +45,10 @@ public class CardController implements CRUDMapping<Card, Card> {
     @Override
     public void checkRight(Card element, Authentication authentication) {
         User user = userService.getUser(authentication);
-        if (user.getId().equals(element.getUserId())) {
+        if (element.getId() == null) {
+            return;
+        }
+        if (!user.getId().equals(element.getUserId())) {
             throw new OperationNotPermited();
         }
     }

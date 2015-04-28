@@ -6,6 +6,11 @@ angular.module('starter').service("CardService", function ($resource, BASE_URL) 
                             url: BASE_URL + 'playlists/:playlistId/cards',
                             method: 'GET',
                             isArray: true
+                        },
+                        'setByPlaylist': {
+                            url: BASE_URL + 'playlists/:playlistId/cards/set',
+                            method: 'GET',
+                            isArray: true
                         }
                     }
                 )

@@ -18,10 +18,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import static java.util.Optional.*;
 import static org.springframework.data.domain.Sort.*;
 
 @Controller
@@ -65,8 +68,18 @@ public class PlaylistController implements CRUDMapping<Playlist, Playlist> {
     @ResponseBody
     public Iterable<Card> getCards(@PathVariable("id") String id, Authentication authentication) {
         Playlist one = get(id, authentication);
-        return Optional.ofNullable(one.getCardIds())
-                .map(e -> cardRepository.findByIds(e, new Sort(new Order(Direction.DESC, "date"))))
+        return ofNullable(one.getCardIds())
+                .map(e -> cardRepository.findByIds(e, new Sort(new Order(Direction.DESC, "added"))))
                 .orElse(Collections.emptyList());
+    }
+
+    @RequestMapping(value = "/{id}/cards/set", method = RequestMethod.GET)
+    @ResponseBody
+    public Iterable<Card> getSet(@PathVariable("id") String id, Authentication authentication) {
+        Playlist one = get(id, authentication);
+        return ofNullable(one.getCardIds())
+                .map(e -> cardRepository.findByIds(e, new Sort(new Order(Direction.ASC, "level"), new Order(Direction.ASC, "lastCheck"))))
+                .orElse(Collections.emptyList());
+
     }
 }

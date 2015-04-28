@@ -19,6 +19,7 @@
 </ion-view>
 
 <div class="bar bar-footer" ng-hide="finished()">
-  <button class="button button-positive" ng-click="remember()"> Помню</button>
+  <button ng-hide="showTranslation" class="button button-positive" ng-click="remember()"> Помню</button>
+  <button ng-show="showTranslation" class="button button-positive" ng-click="next()"> Дальше</button>
   <button ng-hide="showTranslation" class="button button-assertive" ng-click="dontRemember()"> Не помню</button>
 </div>

@@ -63,7 +63,7 @@ angular.module('starter.controllers', [])
         var data = [];
 
         (function () {
-            Card.byPlaylist({playlistId: $stateParams.id}, function (cards) {
+            Card.setByPlaylist({playlistId: $stateParams.id}, function (cards) {
                 data = cards;
             });
         })();
@@ -75,12 +75,25 @@ angular.module('starter.controllers', [])
             return data[position];
         };
 
+        var updateCard = function(level) {
+            var card = $scope.getCurrentCard();
+            card.level = level;
+            card.lastCheck = new Date();
+            card.$save();
+        };
+
         $scope.remember = function () {
+            updateCard(1);
+            $scope.next();
+        };
+
+        $scope.next = function () {
             position++;
             $scope.showTranslation = false;
         };
 
         $scope.dontRemember = function () {
+            updateCard(-1);
             $scope.showTranslation = true;
         };
 

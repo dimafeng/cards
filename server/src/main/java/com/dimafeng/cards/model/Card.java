@@ -14,9 +14,11 @@ public class Card implements Model {
     private String id;
     private String origin;
     private String description;
-    private int know;
-    private int dontKnow;
-    private Date date;
+
+    @Indexed
+    private int level;
+    private Date lastCheck;
+    private Date added;
 
     @Indexed
     private String userId;
@@ -45,20 +47,28 @@ public class Card implements Model {
         this.description = description;
     }
 
-    public int getKnow() {
-        return know;
+    public int getLevel() {
+        return level;
     }
 
-    public void setKnow(int know) {
-        this.know = know;
+    public void setLevel(int level) {
+        this.level = level;
     }
 
-    public int getDontKnow() {
-        return dontKnow;
+    public Date getLastCheck() {
+        return lastCheck;
     }
 
-    public void setDontKnow(int dontKnow) {
-        this.dontKnow = dontKnow;
+    public void setLastCheck(Date lastCheck) {
+        this.lastCheck = lastCheck;
+    }
+
+    public Date getAdded() {
+        return added;
+    }
+
+    public void setAdded(Date added) {
+        this.added = added;
     }
 
     public String getUserId() {
@@ -67,13 +77,5 @@ public class Card implements Model {
 
     public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 }
