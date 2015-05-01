@@ -48,3 +48,8 @@ gulp.task('git-check', function(done) {
   }
   done();
 });
+
+gulp.task('copyCommon', function(){
+  gulp.src('../client/src/app/common/**/*')
+      .pipe(gulp.dest('./www/js/common/'));
+});

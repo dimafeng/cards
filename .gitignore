@@ -4,3 +4,4 @@ bower_components/
 .tmp/
 dist/
 www/lib/
+myApp/www/js/common
