@@ -2,5 +2,8 @@
 
 angular.module('starter')
   .controller('NavbarCtrl', function ($scope) {
-    $scope.date = new Date();
+    $scope.itemPlaylistsColapse = false;
+    $scope.togglePlaylistsItem = function() {
+      $scope.itemPlaylistsColapse = !$scope.itemPlaylistsColapse;
+    }
   });

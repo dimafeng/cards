@@ -1,3 +1,4 @@
+<!--
 <nav class="navbar navbar-static-top navbar-inverse" ng-controller="NavbarCtrl">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -19,3 +20,28 @@
     </div>
   </div>
 </nav>
+-->
+<div class="nav-side-menu" ng-controller="NavbarCtrl">
+  <div class="brand">Brand Logo</div>
+  <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+  <div class="menu-list">
+
+    <ul id="menu-content" class="menu-content collapse out">
+      <li>
+          <span class="glyphicon glyphicon-blackboard"></span> Отчет
+      </li>
+
+      <li ng-click="togglePlaylistsItem()" class="collapsed active">
+        <span class="glyphicon glyphicon-th-list"></span> Плейлисты <span class="arrow glyphicon glyphicon-menu-down"></span>
+      </li>
+      <ul class="sub-menu" id="products" ng-show="itemPlaylistsColapse">
+        <li class="active"><a href="#"><span class="glyphicon glyphicon-th"></span> CSS3 Animation</a></li>
+      </ul>
+
+      <li>
+        <span class="glyphicon glyphicon-wrench"></span> Настройки
+      </li>
+    </ul>
+  </div>
+</div>
