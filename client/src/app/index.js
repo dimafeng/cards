@@ -3,9 +3,9 @@
 angular.module('starter', ['ngSanitize', 'ngResource', 'ui.router', 'ui.bootstrap'])
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         $stateProvider
-            .state('home', {
-                url: '/',
-                templateUrl: 'app/main/main.html',
+            .state('playlist', {
+                url: '/playlist/:id',
+                templateUrl: 'app/main/playlist.html',
                 controller: 'MainCtrl'
             })
             .state('signup', {

@@ -31,6 +31,8 @@ angular.module('starter').service("UserService", function ($http, BASE_URL, Rout
             $http.get(BASE_URL + 'users').success(function (res) {
                 currentUser = res;
                 RouteService.goAfterLogin();
+            }).error(function() {
+                RouteService.redirectIfNotLoggedIn();
             });
         }
     };
