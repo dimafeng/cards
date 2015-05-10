@@ -15,19 +15,24 @@ angular.module('starter')
             });
         };
 
+        (function() {
+            updateEditedCards();
+        })();
+
         $scope.addNewSubmit = function () {
             var card = new Card();
             card.origin = $scope.newCard.origin;
             card.description = $scope.newCard.description;
 
             card.$save().then(function (res) {
-                //Playlist.get({id: })
-                if ($scope.currentPlaylist.cardIds === null) {
-                    $scope.currentPlaylist.cardIds = [];
-                }
-                $scope.currentPlaylist.cardIds.push(res.id);
-                $scope.currentPlaylist.$save().then(function () {
-                    updateEditedCards();
+                Playlist.get({id: $stateParams.id}, function (playlist) {
+                    if (playlist.cardIds === null) {
+                        playlist.cardIds = [];
+                    }
+                    playlist.cardIds.push(res.id);
+                    playlist.$save().then(function () {
+                        updateEditedCards();
+                    });
                 });
             });
         };
