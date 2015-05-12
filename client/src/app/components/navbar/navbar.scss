@@ -172,3 +172,13 @@ ul.menu-content li {
   -moz-box-shadow: none;
   box-shadow: none;
 }
+
+li:hover .btn-remove-item {
+  display: block;
+}
+
+.btn-remove-item {
+  float: right;
+  margin: 3px 20px 0 0;
+  display: none;
+}

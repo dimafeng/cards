@@ -43,8 +43,11 @@
                         <span class="glyphicon glyphicon-plus"></span>Добавить
                     </button>
                 </li>
-                <li ng-class="selectedClass(pl.id)" ng-repeat="pl in playlists" ui-sref="playlist({ id: pl.id })"><span
-                        class="glyphicon glyphicon-th"></span> {{pl.name}}
+                <li ng-class="selectedClass(pl.id)" ng-repeat="pl in playlists"><a
+                        ui-sref="playlist({ id: pl.id })"><span
+                        class="glyphicon glyphicon-th"></span> {{pl.name}}</a>
+                    <button class="btn btn-xs btn-remove-item" ng-click="delete(pl)"><span
+                            class="glyphicon glyphicon-trash"></span></button>
                 </li>
             </ul>
 

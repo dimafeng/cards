@@ -15,6 +15,7 @@ angular.module('starter')
                 $scope.playlists = playlists;
             });
         };
+
         (function() {
             updateList();
             if($state.current.name === 'playlist') {
@@ -42,5 +43,11 @@ angular.module('starter')
 
         $scope.togglePlaylistsItem = function () {
             $scope.itemPlaylistsColapse = !$scope.itemPlaylistsColapse;
+        }
+
+        $scope.delete = function(playlist) {
+            playlist.$delete(function() {
+                updateList();
+            });
         }
     });
