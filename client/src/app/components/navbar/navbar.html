@@ -22,7 +22,7 @@
 </nav>
 -->
 <div class="nav-side-menu" ng-controller="NavbarCtrl">
-    <div class="brand">Brand Logo</div>
+    <div class="brand">Cardagram</div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 
     <div class="menu-list">
@@ -37,8 +37,11 @@
                     class="arrow glyphicon glyphicon-menu-down"></span>
             </li>
             <ul class="sub-menu" id="products" ng-show="itemPlaylistsColapse">
-                <li class="active"><input type="text" ng-model="newPlaylist">
-                    <button ng-click="add()">Добавить</button>
+                <li>
+                    <input type="text" ng-model="newPlaylist"/>
+                    <button class="btn btn-xs" ng-click="add()">
+                        <span class="glyphicon glyphicon-plus"></span>Добавить
+                    </button>
                 </li>
                 <li ng-class="selectedClass(pl.id)" ng-repeat="pl in playlists" ui-sref="playlist({ id: pl.id })"><span
                         class="glyphicon glyphicon-th"></span> {{pl.name}}
@@ -51,3 +54,8 @@
         </ul>
     </div>
 </div>
+
+<div class="top-menu">
+</div>
+
+<div class="top-gap"></div>
