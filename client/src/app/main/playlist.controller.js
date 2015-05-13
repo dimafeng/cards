@@ -7,6 +7,7 @@ angular.module('starter')
         var Playlist = PlaylistService.getResource();
 
         $scope.currentCards = null;
+        $scope.currentPlaylist = null;
 
         var updateEditedCards = function () {
             Card.byPlaylist({playlistId: $stateParams.id}, function (cards) {
@@ -15,8 +16,11 @@ angular.module('starter')
             });
         };
 
-        (function() {
+        (function () {
             updateEditedCards();
+            Playlist.get({id: $stateParams.id}, function (currentPlaylist) {
+                $scope.currentPlaylist = currentPlaylist;
+            })
         })();
 
         $scope.addNewSubmit = function () {
