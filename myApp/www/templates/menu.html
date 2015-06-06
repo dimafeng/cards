@@ -5,7 +5,7 @@
       </ion-nav-back-button>
 
       <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        <button ng-show="isLoggedIn()" class="button button-icon button-clear ion-navicon" menu-toggle="left">
         </button>
       </ion-nav-buttons>
     </ion-nav-bar>
@@ -14,20 +14,17 @@
 
   <ion-side-menu side="left">
     <ion-header-bar class="bar-stable">
-      <h1 class="title">Left</h1>
+      <h1 class="title">Меню</h1>
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item ng-hide="isLoggedIn()" nav-clear menu-close ng-click="login()">
-          Login
-        </ion-item>
-        <ion-item ng-show="isLoggedIn()" nav-clear menu-close href="#/app/settings">
+        <ion-item nav-clear menu-close href="#/app/settings">
           Settings
         </ion-item>
-        <ion-item ng-show="isLoggedIn()" nav-clear menu-close href="#/app/playlists">
+        <ion-item nav-clear menu-close href="#/app/playlists">
           Playlists
         </ion-item>
-        <ion-item ng-show="isLoggedIn()" nav-clear menu-close ng-click="logout()">
+        <ion-item nav-clear menu-close ng-click="logout()">
           Logout
         </ion-item>
       </ion-list>

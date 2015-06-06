@@ -30,6 +30,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngResource'])
                 controller: 'AppCtrl'
             })
 
+            .state('login', {
+                url: "/login",
+                templateUrl: "templates/login.html",
+                controller: 'LoginCtrl'
+            })
+
             .state('app.settings', {
                 url: "/settings",
                 views: {
@@ -58,7 +64,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngResource'])
                 }
             });
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/app/playlists');
+        $urlRouterProvider.otherwise('/app/login');
 
         $httpProvider.defaults.withCredentials = true;
     })
