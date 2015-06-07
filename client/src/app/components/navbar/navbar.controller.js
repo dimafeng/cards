@@ -50,4 +50,13 @@ angular.module('starter')
                 updateList();
             });
         }
+    })
+    .controller('TopMenuCtrl', function($scope, UserService) {
+        (function() {
+            $scope.user = UserService.getCurrentUser();
+        })();
+
+        $scope.logout = function () {
+            UserService.logout();
+        };
     });

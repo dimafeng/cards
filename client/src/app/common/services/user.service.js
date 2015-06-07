@@ -24,6 +24,10 @@ angular.module('starter').service("UserService", function ($http, BASE_URL, Rout
                 });
             });
         },
+        logout: function() {
+            RouteService.redirectIfNotLoggedIn();
+            $http.post(BASE_URL + 'logout');
+        },
         isLoggedIn: function () {
             return currentUser != null;
         },
@@ -34,6 +38,9 @@ angular.module('starter').service("UserService", function ($http, BASE_URL, Rout
             }).error(function() {
                 RouteService.redirectIfNotLoggedIn();
             });
+        },
+        getCurrentUser: function () {
+            return currentUser;
         }
     };
 });

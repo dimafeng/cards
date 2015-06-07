@@ -58,7 +58,10 @@
     </div>
 </div>
 
-<div class="top-menu">
+<div class="top-menu" ng-controller="TopMenuCtrl">
+    <div class="panel-user-info">
+        {{user.email}} (<a ng-click="logout()">Выйти</a>)
+    </div>
 </div>
 
 <div class="top-gap"></div>

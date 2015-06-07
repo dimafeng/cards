@@ -182,3 +182,14 @@ li:hover .btn-remove-item {
   margin: 3px 20px 0 0;
   display: none;
 }
+
+.panel-user-info {
+  float: right;
+  padding: 15px;
+  color: #fff;
+
+  a {
+    color: #fff;
+    cursor: pointer;
+  }
+}
