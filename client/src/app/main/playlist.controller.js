@@ -13,6 +13,7 @@ angular.module('starter')
             Card.byPlaylist({playlistId: $stateParams.id}, function (cards) {
                 $scope.currentCards = cards;
                 $scope.newCard = null;
+                $scope.resetEditing();
             });
         };
 
@@ -40,4 +41,49 @@ angular.module('starter')
                 });
             });
         };
+
+        $scope.editingCard = null;
+        var editingHeader = false;
+        var editingDescription = false;
+        var setEditing = function (card) {
+            editingHeader = false;
+            editingDescription = false;
+            $scope.editingCard = angular.copy(card);
+        };
+
+        $scope.isEditingHeader = function (card) {
+            return editingHeader && card.id === $scope.editingCard.id;
+        };
+
+        $scope.setEditingHeader = function (card) {
+            setEditing(card);
+            editingHeader = true;
+        };
+
+        $scope.isEditingDescription = function (card) {
+            return editingDescription && card.id === $scope.editingCard.id;
+        };
+
+        $scope.setEditingDescription = function (card) {
+            setEditing(card);
+            editingDescription = true;
+        };
+
+        $scope.saveEditing = function () {
+            new Card($scope.editingCard).$save().then(function () {
+                updateEditedCards();
+            });
+        };
+
+        $scope.resetEditing = function () {
+            editingHeader = false;
+            editingDescription = false;
+            $scope.editingCard = null;
+        };
+
+        $scope.removeCard = function (card) {
+            card.$remove().then(function () {
+                updateEditedCards();
+            });
+        }
     });

@@ -1,0 +1,12 @@
+.panel-icons-area {
+  position: absolute;
+  right: 16px;
+  padding: 10px;
+  display: none;
+}
+.panel-card:hover {
+  background: #efefef;
+}
+.panel-card:hover .panel-icons-area {
+  display: block;
+}
