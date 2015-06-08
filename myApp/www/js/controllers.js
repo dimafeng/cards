@@ -29,7 +29,7 @@ angular.module('starter.controllers', [])
             Playlist.query(function (playlists) {
                 $scope.$broadcast('scroll.refreshComplete');
                 $scope.playlists = playlists;
-            }, function() {
+            }, function () {
                 $scope.$broadcast('scroll.refreshComplete');
             });
         };
@@ -41,9 +41,10 @@ angular.module('starter.controllers', [])
         })();
     })
 
-    .controller('PlaylistCtrl', function ($scope, $stateParams, CardService) {
+    .controller('PlaylistCtrl', function ($scope, $stateParams, CardService, StatRecordService) {
 
         var Card = CardService.getResource();
+        var StatRecord = StatRecordService.getResource();
 
         var data = [];
 
@@ -55,6 +56,7 @@ angular.module('starter.controllers', [])
 
         var position = 0;
         $scope.showTranslation = false;
+        var stat = {};
 
         $scope.getCurrentCard = function () {
             return data[position];
@@ -65,6 +67,8 @@ angular.module('starter.controllers', [])
             card.level = level;
             card.lastCheck = new Date();
             card.$save();
+
+            stat[card.id] = level;
         };
 
         $scope.remember = function () {
@@ -74,6 +78,11 @@ angular.module('starter.controllers', [])
 
         $scope.next = function () {
             position++;
+            if($scope.finished()) {
+                var statRecord = new StatRecord();
+                statRecord.statistic = stat;
+                statRecord.$save();
+            }
             $scope.showTranslation = false;
         };
 
@@ -88,6 +97,7 @@ angular.module('starter.controllers', [])
 
         $scope.restart = function () {
             position = 0;
+            stat = {};
         };
     })
     .controller('LoginCtrl', function ($scope, $timeout, UserService, $rootScope) {
