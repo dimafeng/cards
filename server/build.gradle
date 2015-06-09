@@ -29,6 +29,7 @@ dependencies {
     compile(
             'org.mongodb:mongo-java-driver:2.12.5',
             'com.google.guava:guava:18.0',
+            'org.javatuples:javatuples:1.2',
     )
     compile('org.springframework.data:spring-data-mongodb:1.6.1.RELEASE') {
         exclude group: 'org.mongodb', module: 'mongo-java-driver'
@@ -39,4 +40,5 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-security:1.2.1.RELEASE') {
     }
     testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile 'org.mockito:mockito-all:1.10.19'
 }
