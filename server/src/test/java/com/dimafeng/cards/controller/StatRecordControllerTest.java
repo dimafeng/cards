@@ -24,7 +24,7 @@ public class StatRecordControllerTest {
         StatRecordController statRecordController = new StatRecordController();
 
         statRecordController.repository = mock(StatRecordRepository.class);
-        when(statRecordController.repository.findByDateAfter(any())).thenReturn(Arrays.asList(
+        when(statRecordController.repository.findByUserIdAndDateAfter(any(), any())).thenReturn(Arrays.asList(
                 createStatRecord(createDate(1), Arrays.asList(
                          Pair.with("1", 1),
                         Pair.with("2", 1),
@@ -51,7 +51,7 @@ public class StatRecordControllerTest {
                 ))
         ));
 
-        System.out.println(statRecordController.getStatistic());
+        System.out.println(statRecordController.getStatistic(null));
     }
 
     private StatRecord createStatRecord(Date date, List<Pair<String, Integer>> statistic) {
