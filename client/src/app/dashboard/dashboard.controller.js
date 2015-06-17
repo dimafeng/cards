@@ -3,7 +3,7 @@
 angular.module('starter')
     .controller('DashboardCtrl', function ($scope, $http, BASE_URL) {
         $scope.labels = [];
-        $scope.series = ['Series A', 'Series B'];
+        $scope.series = ['Помню', 'Не помню'];
 
         $scope.data = [[],[]];
 
