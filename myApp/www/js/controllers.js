@@ -102,7 +102,9 @@ angular.module('starter.controllers', [])
     })
     .controller('LoginCtrl', function ($scope, $timeout, UserService, $rootScope) {
 
-        $scope.loginData = {};
+        $scope.loginData = {
+            "remember-me": true
+        };
 
         $scope.doLogin = function () {
             UserService.login($scope.loginData).then(function () {

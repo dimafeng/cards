@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.RememberMeAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,8 +18,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 import org.springframework.security.web.authentication.RememberMeServices;
-import org.springframework.security.web.authentication.rememberme.InMemoryTokenRepositoryImpl;
-import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.security.web.authentication.rememberme.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
@@ -26,20 +27,21 @@ import java.io.PrintWriter;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
 //@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
-public class AppSecurityConfig extends WebSecurityConfigurerAdapter
-{
+public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Autowired
     UserService userService;
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception
-    {
+    PersistentTokenRepository repository;
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService).passwordEncoder(userService);
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception
-    {
+    protected void configure(HttpSecurity http) throws Exception {
         http
                 /**
                  * TODO enable csrf
@@ -77,7 +79,10 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter
                          * marked by @Secured annotation, we don't need to redirect request to
                          * /login page, we just need to return 403 error code
                          */
-                .exceptionHandling().authenticationEntryPoint(new Http403ForbiddenEntryPoint());
+                .exceptionHandling().authenticationEntryPoint(new Http403ForbiddenEntryPoint())
+                .and()
+                .rememberMe()
+                .tokenRepository(repository);
     }
 
 }
