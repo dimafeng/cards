@@ -1,1 +1,49 @@
 /* Empty. Add your own CSS if you like */
+@font-face {
+    font-family: 'Pacifico';
+    font-style: normal;
+    font-weight: 400;
+    src: url(pacifico.woff2) format('woff2');
+}
+
+.menu-dark {
+    border-color: #444444;
+    background-color: #444444;
+    color: #fff;
+}
+/*.menu-dark .bar-header
+{
+    background-image: url('../img/gradient.jpg');
+    background-repeat: space;
+}*/
+
+.menu-dark .bar-header,
+.menu-dark .item,
+.menu-dark .item-complex .item-content
+{
+    background-color: #444444;
+    color: #fff;
+    border: none;
+    background-image: none;
+}
+
+.bar-stable .button.button-clear,
+.bar.bar-stable .title
+{
+    color: #fff;
+}
+
+.menu-dark .bar.bar-stable .title
+{
+    font-family: 'Pacifico', cursive;
+    font-size: 1.8em;
+    text-shadow: 2px 2px #000;
+}
+
+.menu-dark .bar.bar-stable .title{
+    color: #fff;
+    background: none;
+}
+[nav-bar-transition="ios"] [nav-bar="active"] .bar, [nav-bar-transition="ios"] [nav-bar="entering"] .bar {
+    background-image: url('../img/gradient.jpg');
+}
