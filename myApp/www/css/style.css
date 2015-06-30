@@ -3,7 +3,7 @@
     font-family: 'Pacifico';
     font-style: normal;
     font-weight: 400;
-    src: url(pacifico.woff2) format('woff2');
+    src: local('Pacifico Regular'), local('Pacifico-Regular'), url(yunJt0R8tCvMyj_V4xSjaXYhjbSpvc47ee6xR_80Hnw.woff) format('woff');
 }
 
 .menu-dark {
