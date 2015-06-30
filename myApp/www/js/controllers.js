@@ -9,7 +9,7 @@ angular.module('starter.controllers', [])
         };
 
         $scope.logout = function () {
-
+            UserService.logout();
         };
     })
 
@@ -114,9 +114,5 @@ angular.module('starter.controllers', [])
 
         $scope.isLoggedIn = function () {
             return UserService.isLoggedIn();
-        };
-
-        $scope.logout = function () {
-            //UserService.isLoggedIn();
         };
     });

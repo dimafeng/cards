@@ -26,6 +26,7 @@ angular.module('starter').service("UserService", function ($http, BASE_URL, Rout
         },
         logout: function() {
             RouteService.redirectIfNotLoggedIn();
+            currentUser = null;
             $http.post(BASE_URL + 'logout');
         },
         isLoggedIn: function () {
