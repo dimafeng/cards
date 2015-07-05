@@ -33,11 +33,14 @@
     color: #fff;
 }
 
-.menu-dark .bar.bar-stable .title
+.menu-dark .bar.bar-stable .title,
+.login-view .title
 {
     font-family: 'Pacifico', cursive;
     font-size: 1.8em;
     text-shadow: 2px 2px #000;
+    color: #fff;
+    text-align: center;
 }
 
 .menu-dark .bar.bar-stable .title{
@@ -46,4 +49,47 @@
 }
 [nav-bar-transition="ios"] [nav-bar="active"] .bar, [nav-bar-transition="ios"] [nav-bar="entering"] .bar {
     background-image: url('../img/gradient.jpg');
+}
+
+.login-view {
+    background: linear-gradient(to right, #be3851 0%, #733750 100%);
+}
+
+.login-view .item input {
+    border-bottom: 1px solid #fff;
+    width: 50%;
+    max-width: 50%;
+    color: #fff;
+}
+
+.login-view .item {
+    background: none;
+    color: #fff;
+    border: none;
+}
+
+.login-view .logo {
+    color: #fff;
+
+}
+
+.login-view .input-label {
+    color: #fff;
+}
+
+.login-view .title {
+    font-size: 2.5em;
+}
+
+.login-view .button.button-positive {
+    border-color: #fff;
+}
+
+.logo img {
+    width: 60%;
+    max-width: 300px;
+}
+.logo {
+    text-align: center;
+    padding-top: 30px;
 }
