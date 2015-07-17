@@ -41,7 +41,9 @@ angular.module('starter.controllers', [])
         })();
     })
 
-    .controller('PlaylistCtrl', function ($scope, $stateParams, CardService, StatRecordService) {
+    .controller('PlaylistCtrl', function ($scope, $stateParams, CardService, StatRecordService, $ionicConfig) {
+
+        $ionicConfig.backButton.text("Назад");
 
         var Card = CardService.getResource();
         var StatRecord = StatRecordService.getResource();
