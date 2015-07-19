@@ -1,6 +1,7 @@
 'use strict';
 
 var gulp = require('gulp');
+var replace = require('gulp-replace');
 
 var $ = require('gulp-load-plugins')({
   pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
@@ -42,6 +43,7 @@ module.exports = function(options) {
       .pipe(assets = $.useref.assets())
       .pipe($.rev())
       .pipe(jsFilter)
+        .pipe(replace(/(constant\(\"BASE_URL\",)([^)]*)(\))/, '$1\'\'$3'))
       .pipe($.ngAnnotate())
       .pipe($.uglify({ preserveComments: $.uglifySaveLicense })).on('error', options.errorHandler('Uglify'))
       .pipe(jsFilter.restore())
