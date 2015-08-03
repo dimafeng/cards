@@ -4,6 +4,7 @@ package com.dimafeng.cards;
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 import org.apache.catalina.Context;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
@@ -24,14 +25,21 @@ import java.util.Arrays;
 //@EnableWebMvc
 @EnableMongoRepositories("com.dimafeng.cards.repository")
 public class Application {
+
+    @Value("${mongo.db.name:cards}")
+    private String databaseName;
+
+    @Value("${mongo.db.server}")
+    private String databaseServer;
+
     @Bean
     public Mongo mongo() throws Exception {
-        return new MongoClient("localhost:27017");
+        return new MongoClient(databaseServer);
     }
 
     @Bean
     public MongoTemplate mongoTemplate() throws Exception {
-        return new MongoTemplate(mongo(), "cards");
+        return new MongoTemplate(mongo(), databaseName);
     }
 
     @Bean
