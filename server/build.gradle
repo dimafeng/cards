@@ -43,3 +43,14 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile 'org.mockito:mockito-all:1.10.19'
 }
+
+task copyStatic(type: Copy) {
+    from '../client/dist/'
+    into 'build/resources/main/static/'
+}
+
+run.dependsOn copyStatic
+
+run {
+    systemProperties = System.getProperties()
+}
