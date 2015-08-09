@@ -1,7 +1,7 @@
 FROM java:8
 
 RUN apt-get update
-RUN apt-get install -y git nodejs npm
+RUN apt-get install -y git nodejs npm --fix-missing
 RUN git clone https://github.com/dimafeng/cards.git
 RUN npm install --global gulp
 
